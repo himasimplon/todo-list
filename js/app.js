@@ -1,8 +1,37 @@
 (function main(){
     var form = $('#addTask');
     var tasks = [
-        {content: "acheter du lait", status: false, id:4}
+       {content: "acheter du lait", status: false, id:4}                                               
     ];
+    var idval = tasks[tasks.length-1].id;
+
+    function viewtask() {
+        $("#renderTasks").empty();
+        for (var i = 0; i < tasks.length; i++) {
+            $("#renderTasks").append("<li>"+tasks[i].content+"</li>");
+        }
+        
+    };
+
+    form.on('submit',function(){
+
+        var taskval = $("#task").val();
+        
+        if(taskval == "") {
+            alert("merci de remplir le formulaire");
+        }else{
+            idval++;
+            var objet = {content:taskval,status:false,id:idval};
+            tasks.push(objet);
+
+            viewtask();
+
+        }
+
+        return false;
+    });
+
+         
 
 // TODO :
 // 1 : Repérer l'envoie du formulaire d'id 'addTask', puis dans le callback : 
@@ -24,6 +53,19 @@
     // 4
 
 
+    /*$('.btn').click(function() {
+       var tache = $("#task").val();
+       console.log(tache);
+       return false;
+    });
+
+      if (val ==""){
+        return false;
+      else {
+        alert
+    }
+        
+      }*/
 })();
 
 
